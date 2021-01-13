@@ -1,7 +1,5 @@
 package sort
 
-import "math"
-
 func merge(arr []int, left, mid, right int) {
 	L := make([]int, mid-left+1)
 	R := make([]int, right-mid)
@@ -14,9 +12,10 @@ func merge(arr []int, left, mid, right int) {
 	//for i := 0; i < right-mid; i++ {
 	//	R = append(R, arr[mid+i+1])
 	//}
-	L = append(L, math.MaxInt32)
-	R = append(R, math.MaxInt32)
+	//L = append(L, math.MaxInt32)
+	//R = append(R, math.MaxInt32)
 	i, j := 0, 0
+
 	for k := left; k <= right; k++ {
 		if L[i] <= R[j] {
 			arr[k] = L[i]
@@ -25,13 +24,22 @@ func merge(arr []int, left, mid, right int) {
 			arr[k] = R[j]
 			j++
 		}
+		if i >= len(L) {
+			copy(arr[k+1:right+1], R[j:])
+			break
+		}
+		if j >= len(R) {
+			copy(arr[k+1:right+1], L[i:])
+			break
+		}
 	}
+
 }
-func mergeSort(arr []int, left, right int) {
+func MergeSort(arr []int, left, right int) {
 	if left < right {
 		mid := (left + right) >> 1
-		mergeSort(arr, left, mid)
-		mergeSort(arr, mid+1, right)
+		MergeSort(arr, left, mid)
+		MergeSort(arr, mid+1, right)
 		merge(arr, left, mid, right)
 	}
 }

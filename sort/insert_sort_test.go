@@ -18,3 +18,17 @@ func TestInsertSort(t *testing.T) {
 		}
 	}
 }
+
+func TestInsertSort2(t *testing.T) {
+	InsertSort2(arr)
+	t.Log(arr)
+	for k := range arr {
+		if k == 0 {
+			continue
+		}
+		if arr[k-1] > arr[k] {
+			t.Error(arr, "排序失败")
+			break
+		}
+	}
+}
