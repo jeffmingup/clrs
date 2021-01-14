@@ -32,6 +32,7 @@ func InsertSort2(arr []int) {
 
 }
 
+//二分查找递归版
 func suitableIndex(list []int, start int, end int, current int) int {
 	// 比到最后没的比的时候就去对比下当前位置与待排元素的大小，并返回较大值的位置
 	if start >= end {
@@ -52,6 +53,8 @@ func suitableIndex(list []int, start int, end int, current int) int {
 	}
 
 }
+
+//二分查找循环版
 func suitableIndex2(list []int) int {
 	key := len(list) - 1
 	start, end := 0, len(list)-2
